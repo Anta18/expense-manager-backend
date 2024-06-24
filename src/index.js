@@ -1,5 +1,6 @@
 const express = require("express");
 require("./db/mongoose");
+require("./cron-job");
 const userRouter = require("./routers/user");
 const expenseRouter = require("./routers/expense");
 const incomeRouter = require("./routers/income");
