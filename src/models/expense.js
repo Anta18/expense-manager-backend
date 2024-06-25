@@ -30,7 +30,7 @@ const expenseSchema = new mongoose.Schema(
     },
     frequency: {
       type: String,
-      enum: ["daily", "weekly", "monthly", "yearly"],
+      enum: ["Daily", "Weekly", "Monthly", "Yearly"],
       required: function () {
         return this.recurring;
       }, // required if recurring is true
@@ -62,14 +62,14 @@ expenseSchema.statics.generateRecurringExpenses = async function () {
 
     let nextOccurrence;
     switch (expense.frequency) {
-      case "daily":
+      case "Daily":
         nextOccurrence = new Date(expense.startDate);
         nextOccurrence.setDate(
           nextOccurrence.getDate() +
             Math.floor((today - expense.startDate) / (1000 * 60 * 60 * 24))
         );
         break;
-      case "weekly":
+      case "Weekly":
         nextOccurrence = new Date(expense.startDate);
         nextOccurrence.setDate(
           nextOccurrence.getDate() +
@@ -79,7 +79,7 @@ expenseSchema.statics.generateRecurringExpenses = async function () {
               7
         );
         break;
-      case "monthly":
+      case "Monthly":
         nextOccurrence = new Date(expense.startDate);
         nextOccurrence.setMonth(
           nextOccurrence.getMonth() +
@@ -90,7 +90,7 @@ expenseSchema.statics.generateRecurringExpenses = async function () {
             )
         );
         break;
-      case "yearly":
+      case "Yearly":
         nextOccurrence = new Date(expense.startDate);
         nextOccurrence.setFullYear(
           nextOccurrence.getFullYear() +

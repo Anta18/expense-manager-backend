@@ -30,7 +30,7 @@ const incomeSchema = new mongoose.Schema(
     },
     frequency: {
       type: String,
-      enum: ["daily", "weekly", "monthly", "yearly"],
+      enum: ["Daily", "Weekly", "Monthly", "Yearly"],
       required: function () {
         return this.recurring;
       }, // required if recurring is true
@@ -62,14 +62,14 @@ incomeSchema.statics.generateRecurringIncome = async function () {
 
     let nextOccurrence;
     switch (income.frequency) {
-      case "daily":
+      case "Daily":
         nextOccurrence = new Date(income.startDate);
         nextOccurrence.setDate(
           nextOccurrence.getDate() +
             Math.floor((today - income.startDate) / (1000 * 60 * 60 * 24))
         );
         break;
-      case "weekly":
+      case "Weekly":
         nextOccurrence = new Date(income.startDate);
         nextOccurrence.setDate(
           nextOccurrence.getDate() +
@@ -77,7 +77,7 @@ incomeSchema.statics.generateRecurringIncome = async function () {
               7
         );
         break;
-      case "monthly":
+      case "Monthly":
         nextOccurrence = new Date(income.startDate);
         nextOccurrence.setMonth(
           nextOccurrence.getMonth() +
@@ -88,7 +88,7 @@ incomeSchema.statics.generateRecurringIncome = async function () {
             )
         );
         break;
-      case "yearly":
+      case "Yearly":
         nextOccurrence = new Date(income.startDate);
         nextOccurrence.setFullYear(
           nextOccurrence.getFullYear() +
