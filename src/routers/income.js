@@ -16,12 +16,11 @@ router.post("/income", auth, async (req, res) => {
   }
 });
 
-router.get("/income/:year", auth, async (req, res) => {
-  const year = parseInt(req.params.year);
+router.get("/income/", auth, async (req, res) => {
+  // const year = parseInt(req.params.year);
   try {
     const incomeInYear = await Income.find({
       owner: req.user._id,
-      year: year,
     });
     res.send(incomeInYear);
   } catch (e) {
