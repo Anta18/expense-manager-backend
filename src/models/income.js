@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const incomeSchema = new mongoose.Schema(
   {
-    source: {
+    title: {
       type: String,
       required: true,
       trim: true,
@@ -11,12 +11,12 @@ const incomeSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    month: {
+    category: {
       type: String,
-      required: true,
+      default: "miscellaneous",
     },
-    year: {
-      type: Number,
+    date: {
+      type: String,
       required: true,
     },
     owner: {
