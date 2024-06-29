@@ -39,7 +39,11 @@ const userSchema = new mongoose.Schema({
       required: true,
     },
   ],
-  categories: {
+  incomeCategories: {
+    type: [String],
+    default: ["miscellaneous"],
+  },
+  expenseCategories: {
     type: [String],
     default: ["miscellaneous"],
   },
